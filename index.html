@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Kun's Facebook interview demo</title>
+		<link rel="stylesheet" type="text/css" href="https://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css">
+		<style>
+			#profile, #logout, #feed {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+
+		<script>
+		  window.fbAsyncInit = function() {
+		    FB.init({
+		      appId      : '1283446768423129',
+		      cookie     : true,
+		      xfbml      : true,
+		      version    : 'v2.12'
+		    });
+		      
+		    //FB.AppEvents.logPageView();   
+
+			FB.getLoginStatus(function(response) {
+			  statusChangeCallback(response);
+			});
+		  };
+
+		  (function(d, s, id){
+		     var js, fjs = d.getElementsByTagName(s)[0];
+		     if (d.getElementById(id)) {return;}
+		     js = d.createElement(s); js.id = id;
+		     js.src = "https://connect.facebook.net/en_US/sdk.js";
+		     fjs.parentNode.insertBefore(js, fjs);
+		   }(document, 'script', 'facebook-jssdk'));
+
+		  function statusChangeCallback(response) {
+		  	if (response.status === 'connected') {
+		  		console.log('Logged in and authenticated');
+		  		setElements(true);
+
+		  		testAPI();
+		  	} else {
+		  		console.log('Not authenticated');
+		  		setElements(false);
+		  	}
+		  }
+
+			function checkLoginState() {
+			  	FB.getLoginStatus(function(response) {
+			    	statusChangeCallback(response);
+			  	});
+			}
+
+			function setElements(isLoggedIn) {
+				if (isLoggedIn) {
+					document.getElementById('fb-btn').style.display = 'none';
+					document.getElementById('logout').style.display = 'block';
+					document.getElementById('heading').style.display = 'none';
+					document.getElementById('profile').style.display = 'block';
+					document.getElementById('feed').style.display = 'block';
+				} else {
+					document.getElementById('fb-btn').style.display = 'block';
+					document.getElementById('logout').style.display = 'none';
+					document.getElementById('heading').style.display = 'block';
+					document.getElementById('profile').style.display = 'none';
+					document.getElementById('feed').style.display = 'none';
+				}
+			}
+
+			function logout() {
+				FB.logout(function(response) {
+					setElements(false);
+				});
+			}
+
+			function testAPI() {
+				FB.api('/me?fields=name,email,birthday', function(response) {
+					if (response && !response.error) {
+						//console.log(response);
+						buildProfile(response);
+					}
+				});
+				
+			}
+
+			function buildProfile(user) {
+				let profile = `
+					<h3>${user.name}</h3>
+					<ul class="list-group">
+						<li class="list-group-item">User ID: ${user.id}</li>
+						<li class="list-group-item">Email: ${user.email}</li>
+						<li class="list-group-item">Birthday: ${user.birday}</li>
+						
+					</ul>
+				`;
+				document.getElementById('profile').innerHTML = profile;
+			}
+
+			function getFeed() {
+				FB.api(
+				    "/page-id/feed",
+				    function (response) {
+				      if (response && !response.error) {
+				        /* handle the result */
+				        buildFeed(response);
+				      }
+				    }
+				);
+			}
+
+			function buildFeed(feed) {
+				let output = '<h3>Latest Posts</h3>';
+				for (let i in feed.data) {
+					if (feed.data[i].message) {
+						output += `
+							<div class="well">
+								${feed.data[i].message} <span>${feed.data[i].created_time}</span>
+							</div>
+						`;
+					}
+				}
+				document.getElementById('feed').innerHTML = output;
+			}
+
+			function post(newPost) {
+				FB.api(
+				    "/page-id/feed",
+				    "POST",
+				    {
+				        "message": newPost
+				    },
+				    function (response) {
+				      if (response && !response.error) {
+				      	/* handle the result */
+				        document.getElementById('feed').innerHTML = response.id;
+						console.log('posted');
+				      }
+				    }
+				);
+			}
+		</script>
+
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">FB interview demo</a>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+        <ul class = "nav navbar-nav navbar-right">
+        	<li><a id = "logout" href="#" onclick="logout()">Logout</a></li>
+        	<fb:login-button 
+				id = "fb-btn"
+			  scope="public_profile,email,user_birthday,publish_actions,user_posts,manage_pages,publish_pages,ads_management"
+			  onlogin="checkLoginState();">
+			</fb:login-button>
+			<li><button onclick="post('final testing')">Post</button></li>
+        </ul>
+        
+      </div>
+    </nav>
+
+		<div class="container">
+			<h3 id="heading">Log in to view your profile</h3>
+			<div id="profile"></div>
+			<div id="feed"></div>
+		</div>
+	</body>
+</html>
