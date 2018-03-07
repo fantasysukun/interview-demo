@@ -18,7 +18,7 @@ function buildProfile(user) {
       <li class="list-group-item">Birthday: ${user.birday}</li>
     </ul>
   `;
-  document.getElementById('profile').innerHTML = profile;
+  document.getElementById('fb-profile').innerHTML = profile;
 }
 
 function getFeed() {
@@ -48,7 +48,7 @@ function buildFeed(feed) {
       `;
     }
   } 
-  document.getElementById('feed').innerHTML = output;
+  document.getElementById('fb-feed').innerHTML = output;
 };
 
 function getAccessToken(ID) {
@@ -104,7 +104,7 @@ async function buildPageFeed(page_access_token, feed) {
       `;
     }
   }
-  document.getElementById('feed').innerHTML = output;
+  document.getElementById('fb-feed').innerHTML = output;
 }
 
 function getPost_Impressions(page_access_token, page_id) {

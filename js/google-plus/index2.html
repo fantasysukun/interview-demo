@@ -12,11 +12,7 @@
     <![endif]-->
           
   	<link href="assets/css/google-plus.css" rel="stylesheet">
-  	<style>
-      #profile, #logout, #feed {
-        display: none;
-      }
-    </style>
+  		
   </head>
     
   <body class="">
@@ -89,10 +85,6 @@
               scope="public_profile,email,user_birthday,publish_actions,user_posts,manage_pages,publish_pages,ads_management,read_insights"
               onlogin="checkLoginState();">
              </fb:login-button></li>
-             <li><button onclick="logout()">Logout</button><</li>
-             <li><button onclick="getFeed()">getFeed</button></li>
-             <li><button onclick="getPageFeed(1916406265068168)">getPageFeed</button></li>
-             <li><button onclick="getPromotable_Posts(1916406265068168)">getPromotable_Posts</button></li>
              <li><a href="#aboutModal" role="button" data-toggle="modal">About</a></li>
            </ul>
         </div>	
@@ -529,12 +521,6 @@ creating Web pages.</p>
   </div>
   </div>
 </div>
-
-<div class="container">
-  <h3 id="heading">Log in to view your profile</h3>
-  <div id="profile"></div>
-  <div id="feed"></div>
-</div>
         <!-- kun's script -->
         <script src="basic.js"></script> 
         <script src="getAndBuildfunctions.js"></script> 
@@ -562,5 +548,4 @@ creating Web pages.</p>
         
         </script>
     
-  </body>
-</html>
+</body></html>

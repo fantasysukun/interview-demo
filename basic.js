@@ -25,6 +25,22 @@ function checkLoginState() {
   });
 }
 
+function setElements(isLoggedIn) {
+  if (isLoggedIn) {
+    document.getElementById('fb-btn').style.display = 'none';
+    document.getElementById('fb-heading').style.display = 'none';
+    document.getElementById('fb-logout').style.display = 'block';
+    document.getElementById('fb-profile').style.display = 'block';
+    document.getElementById('fb-feed').style.display = 'block';
+  } else {
+    document.getElementById('fb-btn').style.display = 'block';
+    document.getElementById('fb-heading').style.display = 'block';
+    document.getElementById('fb-logout').style.display = 'none';
+    document.getElementById('fb-profile').style.display = 'none';
+    document.getElementById('fb-feed').style.display = 'none';
+  }
+}
+
 function statusChangeCallback(response) {
   if (response.status === 'connected') {
     console.log('Logged in and authenticated');
@@ -33,22 +49,6 @@ function statusChangeCallback(response) {
   } else {
     console.log('Not authenticated');
     setElements(false);
-  }
-}
-
-function setElements(isLoggedIn) {
-  if (isLoggedIn) {
-    document.getElementById('fb-btn').style.display = 'none';
-    document.getElementById('heading').style.display = 'none';
-    document.getElementById('logout').style.display = 'block';
-    document.getElementById('profile').style.display = 'block';
-    document.getElementById('feed').style.display = 'block';
-  } else {
-    document.getElementById('fb-btn').style.display = 'block';
-    document.getElementById('heading').style.display = 'block';
-    document.getElementById('logout').style.display = 'none';
-    document.getElementById('profile').style.display = 'none';
-    document.getElementById('feed').style.display = 'none';
   }
 }
 

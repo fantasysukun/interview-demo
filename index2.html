@@ -11,9 +11,9 @@
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
           
-  	<link href="assets/css/google-plus.css" rel="stylesheet">
-  	<style>
-      #profile, #logout, #feed {
+    <link href="assets/css/google-plus.css" rel="stylesheet">
+    <style>
+      #fb-profile, #fb-logout, #fb-feed {
         display: none;
       }
     </style>
@@ -21,7 +21,7 @@
     
   <body class="">
     <div class="navbar navbar-fixed-top header">
-     	<div class="col-md-12">
+      <div class="col-md-12">
         <div class="navbar-header">
           
           <a href="#" class="navbar-brand">Bootstrap</a>
@@ -54,8 +54,8 @@
              <li><a class="" href="#" id="btnToggle"><i class="glyphicon glyphicon-th-large"></i></a></li>
              <li><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>
            </ul>
-        </div>	
-      </div>	
+        </div>  
+      </div>  
     </div>
     <div class="navbar navbar-default" id="subnav">
       <div class="col-md-12">
@@ -89,30 +89,30 @@
               scope="public_profile,email,user_birthday,publish_actions,user_posts,manage_pages,publish_pages,ads_management,read_insights"
               onlogin="checkLoginState();">
              </fb:login-button></li>
-             <li><button onclick="logout()">Logout</button><</li>
+             <li><button id="fb-logout" onclick="logout()">Logout</button></li>
              <li><button onclick="getFeed()">getFeed</button></li>
              <li><button onclick="getPageFeed(1916406265068168)">getPageFeed</button></li>
              <li><button onclick="getPromotable_Posts(1916406265068168)">getPromotable_Posts</button></li>
-             <li><a href="#aboutModal" role="button" data-toggle="modal">About</a></li>
+             <!-- <li><a href="#aboutModal" role="button" data-toggle="modal">About</a></li> -->
            </ul>
-        </div>	
-      </div>	
+        </div>  
+      </div>  
     </div>
 
 <!--main-->
 <div class="container" id="main">
    <div class="row">
    <div class="col-sm-6 col-md-4">
-        <div class="panel panel-default">
+        <!-- <div class="panel panel-default">
           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Bootstrap Examples</h4></div>
-   			<div class="panel-body">
+        <div class="panel-body">
               <div class="list-group">
                 <a href="http://usebootstrap.com/theme/google-plus" class="list-group-item">Modal / Dialog</a>
                 <a href="http://usebootstrap.com/theme/google-plus" class="list-group-item">Datetime Examples</a>
                 <a href="http://usebootstrap.com/theme/google-plus" class="list-group-item">Data Grids</a>
               </div>
             </div>
-   		</div>
+      </div> -->
      
      <!-- Key -->
         <div class="well"> 
@@ -126,9 +126,9 @@
             </form>
         </div>
      
-        <div class="panel panel-default">
+        <!-- <div class="panel panel-default">
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>More Templates</h4></div>
-   			<div class="panel-body">
+        <div class="panel-body">
               <img src="assets/img/150x150.gif" class="img-circle pull-right"> <a href="#">Free @Bootply</a>
               <div class="clearfix"></div>
               There a load of new free Bootstrap 3 ready templates at 
@@ -137,11 +137,11 @@ customization to the Bootstrap baseline.
               <hr>
               <ul class="list-unstyled"><li><a href="http://usebootstrap.com/theme/google-plus">Dashboard</a></li><li><a href="http://usebootstrap.com/theme/google-plus">Darkside</a></li><li><a href="http://usebootstrap.com/theme/google-plus">Greenfield</a></li></ul>
             </div>
-         </div> 
+         </div>  -->
 
-	</div>
-  	<div class="col-sm-6 col-md-4">
-      	 
+  </div>
+    <!-- <div class="col-sm-6 col-md-4">
+         
           <div class="well"> 
              <form class="form">
               <h4>Sign-up</h4>
@@ -152,9 +152,9 @@ customization to the Bootstrap baseline.
             </form>
           </div>
 
-      	 <div class="panel panel-default">
+         <div class="panel panel-default">
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Bootply Editor &amp; Code Library</h4></div>
-   			<div class="panel-body">
+        <div class="panel-body">
               <p><img src="assets/img/150x150.gif" class="img-circle pull-right"> <a href="#">The Bootstrap Playground</a></p>
               <div class="clearfix"></div>
               <hr>
@@ -166,33 +166,33 @@ the 100% free Bootply.com code repository.
             </div>
          </div>
       
-      	 <div class="panel panel-default">
+         <div class="panel panel-default">
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Portlet Heading</h4></div>
-   			<div class="panel-body">
+        <div class="panel-body">
               <ul class="list-group">
               <li class="list-group-item">Modals</li>
               <li class="list-group-item">Sliders / Carousel</li>
               <li class="list-group-item">Thumbnails</li>
               </ul>
             </div>
-   		 </div>
+       </div>
       
-  	</div>
-  	<div class="col-sm-6 col-md-4">
+    </div> -->
+    <!-- <div class="col-sm-6 col-md-4">
          <div class="panel panel-default">
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Portlet Heading</h4></div>
-   			<div class="panel-body">
+        <div class="panel-body">
               <ul class="list-group">
               <li class="list-group-item">Bootply Playground</li>
               <li class="list-group-item">Bootstrap Editor</li>
               <li class="list-group-item">Bootstrap Templates</li>
               </ul>
             </div>
-   		</div>
+      </div>
         
         <div class="panel panel-default">
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Stackoverflow</h4></div>
-   			<div class="panel-body">
+        <div class="panel-body">
               <img src="assets/img/150x150.gif" class="img-circle pull-right"> <a href="#">Keyword: Bootstrap</a>
               <div class="clearfix"></div>
               <hr>
@@ -207,33 +207,33 @@ the 100% free Bootply.com code repository.
                 </div>
                 <input class="form-control" placeholder="Add a comment.." type="text">
               </div>
-          	  </form>
+              </form>
               
             </div>
          </div>
  
         <div class="panel panel-default">
           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Top Items</h4></div>
-   			<div class="panel-body">
+        <div class="panel-body">
               <div class="list-group">
                 <a href="http://usebootstrap.com/theme/google-plus" class="list-group-item active">Bootstrap 3</a>
                 <a href="http://usebootstrap.com/theme/google-plus" class="list-group-item">Snippets</a>
                 <a href="http://usebootstrap.com/theme/google-plus" class="list-group-item">Examples</a>
               </div>
             </div>
-   		</div>
+      </div>
       
-    </div>
+    </div> -->
   </div><!--/row-->
   
   <hr>
   
-  <div class="row">
-  	<div class="col-md-12"><h2>Posts</h2></div>
+  <div class="row"> <!-- Posts -->
+    <div class="col-md-12"><h2>Posts</h2></div>
     <div class="col-sm-6 col-md-4">
-    	<div class="panel panel-default">
+      <div class="panel panel-default">
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Upgrade to Bootstrap 3</h4></div>
-   			<div class="panel-body">
+        <div class="panel-body">
               <img src="assets/img/photo.png" class="img-circle pull-right"> <a href="#">Guidance and Tools</a>
               <div class="clearfix"></div>
               <hr>
@@ -244,11 +244,11 @@ the 100% free Bootply.com code repository.
               
             </div>
          </div> 
-    </div>
+    </div> <!-- profiles -->
      <div class="col-sm-6 col-md-4">
-    	<div class="panel panel-default">
+      <div class="panel panel-default">
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Profiles</h4></div>
-   			<div class="panel-body">
+        <div class="panel-body">
               Check out some of our member profiles..
               <hr>
               <div class="well well-sm">
@@ -258,7 +258,7 @@ the 100% free Bootply.com code repository.
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading">Jose Kinsella</h4>
-                		<p><span class="label label-info">10 photos</span> <span class="label label-primary">89 followers</span></p>
+                    <p><span class="label label-info">10 photos</span> <span class="label label-primary">89 followers</span></p>
                         <p>
                             <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>
                             <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-heart"></span> Favorite</a>
@@ -269,10 +269,10 @@ the 100% free Bootply.com code repository.
             </div>
          </div> 
     </div>
-     <div class="col-sm-6 col-md-4">
-    	<div class="panel panel-default">
+     <!-- <div class="col-sm-6 col-md-4">
+      <div class="panel panel-default">
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Inspiration</h4></div>
-   			<div class="panel-body">
+        <div class="panel-body">
               <img src="assets/img/150.gif" class="img-circle pull-right"> <a href="#">Articles</a>
               <div class="clearfix"></div>
               <hr>
@@ -292,14 +292,14 @@ creating Web pages.</p>
               
             </div>
          </div> 
-    </div><!--/articles-->
+    </div> --><!--/articles-->
     </div>
     
-    <hr>
+    <!-- <hr>
   
-	<div class="row">
+  <div class="row">
   
-	   <div class="col-sm-4 col-xs-6">
+     <div class="col-sm-4 col-xs-6">
       
         <div class="panel panel-default">
           <div class="panel-thumbnail"><img src="assets/img/bg_suburb.jpg" class="img-responsive"></div>
@@ -315,11 +315,11 @@ creating Web pages.</p>
         </div>
 
         
-      </div><!--/col-->
+      </div>
       
       <div class="col-sm-4 col-xs-6">
       
-      	<div class="panel panel-default">
+        <div class="panel panel-default">
           <div class="panel-thumbnail"><img src="assets/img/FFF.gif" class="img-responsive"></div>
           <div class="panel-body">
             <p class="lead">Bootstrap Templates</p>
@@ -333,11 +333,11 @@ creating Web pages.</p>
         </div>
 
         
-      </div><!--/col-->
+      </div>
       
       <div class="col-sm-4 col-xs-6">
       
-      	<div class="panel panel-default">
+        <div class="panel panel-default">
           <div class="panel-thumbnail"><img src="asstes/img/FFF_002.gif" class="img-responsive"></div>
           <div class="panel-body">
             <p class="lead">Social Media</p>
@@ -351,24 +351,24 @@ creating Web pages.</p>
         </div>
 
       
-      </div><!--/col-->
+      </div>
      
-  	</div>
+    </div> -->
   
-  	<hr>
+    <!-- <hr>
   
-  	<div class="row">
-  		<div class="col-md-12"><h2>Playground</h2></div>
+    <div class="row">
+      <div class="col-md-12"><h2>Playground</h2></div>
         <div class="col-md-12">
           <div class="alert alert-info alert-dismissable">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
               <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
           </div>
         </div>
-    	<div class="col-sm-6 col-md-4">
-    	<div class="panel panel-default">
+      <div class="col-sm-6 col-md-4">
+      <div class="panel panel-default">
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Buttons &amp; Labels</h4></div>
-   			<div class="panel-body">
+        <div class="panel-body">
               <div class="row">
                 <div class="col-xs-4"><a class="btn btn-default center-block" href="#">Button</a></div>
                 <div class="col-xs-4"><a class="btn btn-primary center-block" href="#">Primary</a></div>
@@ -390,7 +390,7 @@ creating Web pages.</p>
                 
               </div>
               <div class="col-md-4">
-              	<span class="label label-warning">Warning</span>  
+                <span class="label label-warning">Warning</span>  
                 <span class="label label-info">Info</span>
               </div>
               <div class="col-md-4">
@@ -403,9 +403,9 @@ creating Web pages.</p>
          </div> 
     </div>
      <div class="col-sm-6 col-md-4">
-    	<div class="panel panel-default">
+      <div class="panel panel-default">
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Progress Bars</h4></div>
-   			<div class="panel-body">
+        <div class="panel-body">
               
               <div class="progress">
                 <div class="progress-bar progress-bar-info" style="width: 20%"></div>
@@ -424,9 +424,9 @@ creating Web pages.</p>
          </div> 
     </div>
      <div class="col-sm-6 col-md-4">
-    	<div class="panel panel-default">
+      <div class="panel panel-default">
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Tabs</h4></div>
-   			<div class="panel-body">
+        <div class="panel-body">
 
                 <ul class="nav nav-tabs">
                   <li class="active"><a href="#A" data-toggle="tab">Section 1</a></li>
@@ -445,7 +445,7 @@ creating Web pages.</p>
                       <div class="well well-sm">I've decided that I like wells.</div>
                     </div>
                   </div>
-                </div> <!-- /tabbable -->
+                </div> 
               
                 <div class="col-sm-12 text-center">
                   <ul class="pagination center-block" style="display:inline-block;">
@@ -461,15 +461,15 @@ creating Web pages.</p>
               
             </div>
          </div> 
-    </div><!--playground-->
+    </div> --><!--playground-->
     
-    <br>
+    <!-- <br>
     
     <div class="clearfix"></div>
       
     <hr>
     <div class="col-md-12 text-center"><p><a href="http://usebootstrap.com/theme/google-plus" target="_ext">Download Google Plus Style Template</a><br><a href="http://usebootstrap.com/theme/google-plus" target="_ext">More Bootstrap Templates by @Bootply</a></p></div>
-    <hr>
+    <hr> -->
     
   </div>
 </div><!--/main-->
@@ -477,7 +477,7 @@ creating Web pages.</p>
 
 
 <!--login modal-->
-<div style="display: none;" id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- <div style="display: none;" id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
   <div class="modal-content">
       <div class="modal-header">
@@ -501,15 +501,15 @@ creating Web pages.</p>
       <div class="modal-footer">
           <div class="col-md-12">
           <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-		  </div>	
+      </div>  
       </div>
   </div>
   </div>
-</div>
+</div> -->
 
 
 <!--about modal-->
-<div style="display: none;" id="aboutModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- <div style="display: none;" id="aboutModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
   <div class="modal-content">
       <div class="modal-header">
@@ -528,12 +528,12 @@ creating Web pages.</p>
       </div>
   </div>
   </div>
-</div>
+</div> -->
 
 <div class="container">
-  <h3 id="heading">Log in to view your profile</h3>
-  <div id="profile"></div>
-  <div id="feed"></div>
+  <h3 id="fb-heading">Log in to view your profile</h3>
+  <div id="fb-profile"></div>
+  <div id="fb-feed"></div>
 </div>
         <!-- kun's script -->
         <script src="basic.js"></script> 
@@ -543,21 +543,21 @@ creating Web pages.</p>
 
         <script type="text/javascript" src="assets/js/jquery.js"></script>
         <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-		
+    
         <script type="text/javascript">
         
         $(document).ready(function() {
         
-			$('#btnToggle').click(function(){
-				if ($(this).hasClass('on')) {
-					$('#main .col-md-6').addClass('col-md-4').removeClass('col-md-6');
-					$(this).removeClass('on');
-				}
-				else {
-					$('#main .col-md-4').addClass('col-md-6').removeClass('col-md-4');
-					$(this).addClass('on');
-				}
-			});
+      $('#btnToggle').click(function(){
+        if ($(this).hasClass('on')) {
+          $('#main .col-md-6').addClass('col-md-4').removeClass('col-md-6');
+          $(this).removeClass('on');
+        }
+        else {
+          $('#main .col-md-4').addClass('col-md-6').removeClass('col-md-4');
+          $(this).addClass('on');
+        }
+      });
         });
         
         </script>

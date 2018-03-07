@@ -8,7 +8,7 @@ function post(newPost) {
       function (response) {
         if (response && !response.error) {
           /* handle the result */
-          document.getElementById('feed').innerHTML = response.id;
+          document.getElementById('fb-feed').innerHTML = response.id;
           console.log('posted');
         } else {
           console.log(response.error);
