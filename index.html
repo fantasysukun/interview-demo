@@ -3,6 +3,9 @@
 	<head>
 		<title>Kun's Facebook interview demo</title>
 		<link rel="stylesheet" type="text/css" href="https://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css">
+
+		<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> -->
 		<style>
 			#profile, #logout, #feed {
 				display: none;
@@ -100,7 +103,7 @@
 
 			function getFeed() {
 				FB.api(
-				    "/page-id/feed",
+				    "/me/feed",
 				    function (response) {
 				      if (response && !response.error) {
 				        /* handle the result */
@@ -124,9 +127,10 @@
 				document.getElementById('feed').innerHTML = output;
 			}
 
+			//<li><button onclick="post('final testing')">Post</button></li>
 			function post(newPost) {
 				FB.api(
-				    "/page-id/feed",
+				    "/me/feed",
 				    "POST",
 				    {
 				        "message": newPost
@@ -136,11 +140,86 @@
 				      	/* handle the result */
 				        document.getElementById('feed').innerHTML = response.id;
 						console.log('posted');
+				      } else {
+				      	console.log('post has error');
 				      }
 				    }
 				);
 			}
+
+			function getAccessToken(ID) {
+				FB.api(
+				    `/${ID}?fields=access_token`,
+				    "GET",
+				    function (response) {
+				      if (response && !response.error) {
+				      	/* handle the result */
+				      	//console.log("toekn: " + response.access_token);
+				        //getPromotable_Posts(response.access_token); 
+				        console.log('got AccessToken');
+				        return response.access_token;
+				      } else {
+				      	console.log('getAccessToken has error');
+				      }
+				    }
+				);
+			}
+
+			function getPromotable_Posts(ID) {
+				
+					FB.api(
+				    "/me/promotable_posts",
+				    "GET",
+				    { 
+		                access_token : token,
+		            }, 
+				    function (response) {
+				      if (response && !response.error) {
+				      	/* handle the result */
+				        buildFeed(response);
+						console.log('got Promotable_Posts');
+				      } else {
+				      	console.log('getPromotable_Posts has error');
+				      }
+				    }
+				);
+			}
+
+			function createPromotable_Posts(ID, newPost, time) {
+				(FB.api(
+				    "/me/feed",
+				    "POST",
+				    { 
+		                access_token : getAccessToken(ID),
+		                message : newPost,
+		                scheduled_publish_time : convertToUnixTime(time),
+		                published : false,
+
+		            }, 
+				    function (response) {
+				      if (response && !response.error) {
+				      	/* handle the result */
+				        //buildFeed(response);
+						console.log('created');
+				      } else {
+				      	console.log('createPromotable_Posts has error');
+				      }
+				    }
+				));
+			}
+			
+			function convertToUnixTime(time) { //input is xx mins
+				return new Date().getTime() / 1000 + 3000 + (3600 * 8);
+			}
 		</script>
+		<!-- <script src="js/jquery.js"></script> 
+		<script src="js/moment.min.js"></script> 
+		<script src="js/combodate.js"></script> 
+		<script>
+			$(function(){
+			    $('#datetime12').combodate();  
+			});
+		</script> -->
 
 <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -175,7 +254,10 @@
 			  scope="public_profile,email,user_birthday,publish_actions,user_posts,manage_pages,publish_pages,ads_management"
 			  onlogin="checkLoginState();">
 			</fb:login-button>
-			<li><button onclick="post('final testing')">Post</button></li>
+			<li><button onclick="post('final testing 2')">Post</button></li>
+			<li><button onclick="getFeed()">getFeed</button></li>
+			<li><button onclick="getPromotable_Posts(1916406265068168)">getPromotable_Posts</button></li>
+			<li><button onclick="createPromotable_Posts(1916406265068168,'newPost',10)">createPromotable_Posts</button></li>
         </ul>
         
       </div>
@@ -183,6 +265,9 @@
 
 		<div class="container">
 			<h3 id="heading">Log in to view your profile</h3>
+			<!-- <input type="text" id="datetime12" data-format="DD-MM-YYYY h:mm a" data-template="DD / MM / YYYY     hh : mm a" name="datetime" value="21-12-2012 8:30 pm"> -->
+
+			
 			<div id="profile"></div>
 			<div id="feed"></div>
 		</div>
