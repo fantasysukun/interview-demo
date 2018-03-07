@@ -118,29 +118,86 @@
 				for (let i in feed.data) {
 					if (feed.data[i].message) {
 						output += `
-							<div class="well">
+				        	<div class="well">
 								${feed.data[i].message} <span>${feed.data[i].created_time}</span>
 								<span>${feed.data[i].id}</span>
 							</div>
 						`;
-						// FB.api(
-						//     "/feed.data[i].id/insights/{post_",
-						//     "POST",
-						//     {
-						//         "message": newPost
-						//     },
-						//     function (response) {
-						//       if (response && !response.error) {
-						//       	 handle the result 
-						//         document.getElementById('feed').innerHTML = response.id;
-						// 		console.log('posted');
-						//       } else {
-						//       	console.log('post has error');
-						//       }
-						//     }
-						// );
 					}
-				}
+				}	
+				document.getElementById('feed').innerHTML = output;
+			};
+
+			function getPageFeed(ID) {
+				FB.api(
+				    `/${ID}?fields=access_token`,
+				    "GET",
+				    function (response) {
+				        if (response && !response.error) {
+					      	/* handle the result */
+					        console.log('got AccessToken');
+							FB.api(
+							    `/${ID}/feed`, 
+							    {
+							    	access_token : response.access_token
+							    },
+							    function (response) {
+							        if (response && !response.error) {
+							        	/* handle the result */
+								        buildPageFeed(ID, response);
+							        }
+							    }
+							);
+						} else {
+							console.log(response.error);
+						}
+					}
+				);
+			}
+			function buildPageFeed(ID, feed) {
+				let output = '<h3>Latest Posts</h3>';
+				FB.api(
+				    `/${ID}?fields=access_token`,
+				    "GET",
+				    function (response) {
+				      if (response && !response.error) {
+				      	/* handle the result */
+				        console.log('got AccessToken');
+						for (let i in feed.data) {
+							if (feed.data[i].message) {
+								let result = ' ';
+								FB.api(
+								    `/${feed.data[i].id}/insights/post_impressions`,
+								    "GET", 
+								    {
+								    	access_token : response.access_token
+								    },
+								    function (response) {
+								    	console.log(feed.data[i].id);
+								      if (response && !response.error) {
+								      	
+								      	
+								        result = response.data.values.value;
+								        console.log(result);
+										console.log('got value');
+								      } else {
+								      	console.log(response.error);
+								      }
+								    }
+								);
+								output += `
+						        	<div class="well">
+										${feed.data[i].message} <span>${feed.data[i].created_time}</span>
+										<span>${feed.data[i].id}</span>
+										<span> value: ${result}</span>
+									</div>
+								`;
+							}
+						}
+					} else {
+
+					}
+				});
 				document.getElementById('feed').innerHTML = output;
 			}
 
@@ -296,11 +353,12 @@
         	<li><a id = "logout" href="#" onclick="logout()">Logout</a></li>
         	<fb:login-button 
 				id = "fb-btn"
-			  scope="public_profile,email,user_birthday,publish_actions,user_posts,manage_pages,publish_pages,ads_management"
+			  scope="public_profile,email,user_birthday,publish_actions,user_posts,manage_pages,publish_pages,ads_management,read_insights"
 			  onlogin="checkLoginState();">
 			</fb:login-button>
 			<li><button onclick="post('final testing 2')">Post</button></li>
 			<li><button onclick="getFeed()">getFeed</button></li>
+			<li><button onclick="getPageFeed(1916406265068168)">getPageFeed</button></li>
 			<li><button onclick="getPromotable_Posts(1916406265068168)">getPromotable_Posts</button></li>
 			<li><button onclick="createPromotable_Posts(1916406265068168,'newPost 2',10)">createPromotable_Posts</button></li>
         </ul>
