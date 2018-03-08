@@ -96,3 +96,19 @@ h3,h4,h5 {
 #main {
 	padding-top:120px;
 }
+
+#fb-profile, #fb-logout, #fb-feed {
+  display: none;
+}
+
+.nameBox {
+    display: inline-block;
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+.nameBox h5 {
+    margin: 0px;
+    padding-bottom: 0px;
+}
+

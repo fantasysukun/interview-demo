@@ -1,7 +1,6 @@
 function getProfile() {
   FB.api('/me?fields=name,email,birthday', function(response) {
     if (response && !response.error) {
-      //console.log(response);
       buildProfile(response);
     } else {
       console.log(response.error);
@@ -11,12 +10,33 @@ function getProfile() {
 
 function buildProfile(user) {
   let profile = `
-    <h3>${user.name}</h3>
-    <ul class="list-group">
-      <li class="list-group-item">User ID: ${user.id}</li>
-      <li class="list-group-item">Email: ${user.email}</li>
-      <li class="list-group-item">Birthday: ${user.birday}</li>
-    </ul>
+    <hr>
+    <div class="row">
+      <div id="fb-profiles">
+        <div class="col-md-12"><h2>profiles</h2></div>
+        <div class="col-sm-6 col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="well well-sm">
+                <div class="media">
+                  <a class="thumbnail pull-left" href="#">
+                      <img class="media-object" src="assets/img/a13ac7aed64918b6354f48da59490e3a.jpg">
+                  </a>
+                  <div class="media-body">
+                      <h4 class="media-heading">${user.name}</h4>
+                  <p><span class="label label-info">10 photos</span> <span class="label label-primary">89 followers</span></p>
+                      <p>
+                          <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>
+                          <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-heart"></span> Favorite</a>
+                      </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
   `;
   document.getElementById('fb-profile').innerHTML = profile;
 }
@@ -35,16 +55,23 @@ function getFeed() {
   );
 }
 
-function buildFeed(feed) {
-  let output = '<h3>Latest Posts</h3>';
+async function buildFeed(feed) {
+  let output = '<div class="col-md-12"><h2>Posts</h2></div>';
   for (let i in feed.data) {
     if (feed.data[i].message) {
+      console.log(feed.data[i].created_time);
+      var localTime = await getLocalTime(feed.data[i].created_time);
       output += `
-        <div class="well">
-          ${feed.data[i].message} 
-          <span>${feed.data[i].created_time}</span>
-          <span>${feed.data[i].id}</span>
-        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <img src="assets/img/photo.png" class="img-circle"> 
+              <div class="nameBox"><a href="#">Kun Su</a><h5>${localTime}</h5></div>
+              <div class="clearfix"></div>
+              <p>${feed.data[i].message}</p>
+            </div>
+          </div> 
+        </div> 
       `;
     }
   } 
@@ -89,18 +116,26 @@ async function getPageFeed(ID) {
 }
 
 async function buildPageFeed(page_access_token, feed) {
-  let output = '<h3>Latest Posts</h3>';
+  let output = '<h3>Latest Pages Posts</h3>';
   for (let i in feed.data) {
     if (feed.data[i].message) {
-      console.log(feed.data[i].id);
+      console.log(feed.data[i].created_time);
       var result = await getPost_Impressions(page_access_token, feed.data[i].id);
+      var localTime = await getLocalTime(feed.data[i].created_time);
       output += `
-        <div class="well">
-          <span>${feed.data[i].message}<span>
-          <span>${feed.data[i].created_time}</span>
-          <span>${feed.data[i].id}</span>
-          <span> value: ${result}</span>
-        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <img src="assets/img/photo.png" class="img-circle"> 
+              <div class="nameBox"><a href="#">Kun Su</a><h5>${localTime}</h5></div>
+              <div class="clearfix"></div>
+              <p>${feed.data[i].message}</p>
+              <br>
+              <div class="clearfix"></div>
+              <h5>People who viewed this post: ${result}</h5>
+            </div>
+          </div> 
+        </div> 
       `;
     }
   }
@@ -116,10 +151,7 @@ function getPost_Impressions(page_access_token, page_id) {
         access_token : page_access_token
       },
       function (response) {
-        //console.log(feed.data[i].id);
         if (response && !response.error) {
-          // console.log('got value');
-          // console.log(response);
           resolve(response.data[0].values[0].value);
         } else {
           console.log(response.error);
@@ -149,4 +181,16 @@ async function getPromotable_Posts(ID) {
       }
     }
   );
+}
+
+function getLocalTime(time) {
+  return new Promise(resolve => {
+    if (time != undefined) {
+      var localTime = new Date(time);
+      resolve(localTime.toLocaleString());
+    } else {
+      console.log('input time is invalid');
+      resolve();
+    }
+  }); 
 }

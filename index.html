@@ -1,72 +1,132 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Kun's Facebook interview demo</title>
-		<link rel="stylesheet" type="text/css" href="https://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css">
+<html lang="en">
+  <head>
+    <title>Kun's Facebook interview demo</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+          
+    <link href="assets/css/google-plus.css" rel="stylesheet">
+    <link href="final.css" rel="stylesheet">
+  </head>
+    
+  <body class="">
+    <div class="navbar navbar-fixed-top header">
+      <div class="col-md-12">
+        <div class="navbar-header">
+          
+          <a href="#" class="navbar-brand">Bootstrap</a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
+          <i class="glyphicon glyphicon-search"></i>
+          </button>
+      
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse1">
+          <form class="navbar-form pull-left">
+              <div class="input-group" style="max-width:470px;">
+                <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text">
+                <div class="input-group-btn">
+                  <button class="btn btn-default btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+              </div>
+          </form>
+        </div>  
+      </div>  
+    </div>
+    
+    <div class="navbar navbar-default" id="subnav">
+      <div class="col-md-12">
+        <div class="navbar-header">
+          
+          <a href="index2.html" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Home <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
+          <ul class="nav dropdown-menu">
+            <li><a href="#"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
+            <li><a href="#"><i class="glyphicon glyphicon-dashboard" style="color:#0000aa;"></i> Dashboard</a></li>
+            <li><a href="#"><i class="glyphicon glyphicon-inbox" style="color:#11dd11;"></i> Pages</a></li>
+            <li class="nav-divider"></li>
+            <li><a href="#"><i class="glyphicon glyphicon-cog" style="color:#dd1111;"></i> Settings</a></li>
+            <li><a href="#"><i class="glyphicon glyphicon-plus"></i> More..</a></li>
+          </ul>
+          
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse2">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+      
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse2">
+          <ul class="nav navbar-nav navbar-right">
+             <li><fb:login-button 
+              id = "fb-btn"
+              scope="public_profile,email,user_birthday,publish_actions,user_posts,manage_pages,publish_pages,ads_management,read_insights"
+              onlogin="checkLoginState();">
+             </fb:login-button></li>
+             <li class="active"><a href="#" id="fb-logout" onclick="logout()">Logout</a></li>
+             <li class="active"><a href="#" onclick="getFeed()">GetFeed</a></li>
+             <li class="active"><a href="#" onclick="getPageFeed(1916406265068168)">GetPageFeed</a></li>
+             <li class="active"><a href="#" onclick="getPromotable_Posts(1916406265068168)">GetHidden_Posts</a></li>
+           </ul>
+        </div>  
+      </div>  
+    </div>
 
-		<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> -->
-		<style>
-			#profile, #logout, #feed {
-				display: none;
-			}
-		</style>
-	</head>
-	<body>
-
-		<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand" href="#">FB interview demo</a>
-
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-        </ul>
-        <ul class = "nav navbar-nav navbar-right">
-        	<li><a id = "logout" href="#" onclick="logout()">Logout</a></li>
-        	<fb:login-button 
-				id = "fb-btn"
-			  scope="public_profile,email,user_birthday,publish_actions,user_posts,manage_pages,publish_pages,ads_management,read_insights"
-			  onlogin="checkLoginState();">
-			</fb:login-button>
-			<li><button onclick="post('final testing 2')">Post</button></li>
-			<li><button onclick="getFeed()">getFeed</button></li>
-			<li><button onclick="getPageFeed(1916406265068168)">getPageFeed</button></li>
-			<li><button onclick="getPromotable_Posts(1916406265068168)">getPromotable_Posts</button></li>
-			<li><button onclick="createPromotable_Posts(1916406265068168,'newPost 2',10)">createPromotable_Posts</button></li>
-        </ul>
-        
+    <!--main-->
+    <div class="container" id="main">
+      <div class="row">
+        <div class="col-sm-6 col-md-4">
+         
+          <div class="container">
+            <h3 id="fb-heading">Log in to view your profile</h3>
+            <div id="fb-profile"></div>
+          </div>
+          <div class="well"> 
+            <form id="fb-newPost" class="form-horizontal" role="form">
+              <h4>Make post</h4>
+              <div class="form-group" style="padding:14px;">
+                <textarea id="fb-post" class="form-control" placeholder="What's on your mind?"></textarea>
+                <input type="text" id="fb-minutes" size="20" name="minutes"><br>
+              </div>
+              
+              <button class="btn btn-success pull-right" type="button" onclick="submitFrom_data(1916406265068168)">Post</button><ul class="list-inline"><li><a href="#"><i class="glyphicon glyphicon-align-left"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-center"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-right"></i></a></li></ul>
+            </form>
+          </div>
+          <div class="container">  
+            <div id="fb-feed"></div>
+          </div>
+        </div>
       </div>
-    </nav>
+    </div>
+  </div>
+    
+    <!-- kun's script -->
+    <script src="basic.js"></script> 
+    <script src="getAndBuildfunctions.js"></script> 
+    <script src="postfunctions.js"></script> 
+    <!-- kun's script -->
 
-		<div class="container">
-			<h3 id="heading">Log in to view your profile</h3>
-			<!-- <input type="text" id="datetime12" data-format="DD-MM-YYYY h:mm a" data-template="DD / MM / YYYY     hh : mm a" name="datetime" value="21-12-2012 8:30 pm"> -->
+    <script type="text/javascript" src="assets/js/jquery.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
 
-			
-			<div id="profile"></div>
-			<div id="feed"></div>
-		</div>
-		<script src="basic.js"></script> 
-		<script src="getAndBuildfunctions.js"></script> 
-		<script src="postfunctions.js"></script> 
-	</body>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('#btnToggle').click(function(){
+        if ($(this).hasClass('on')) {
+          $('#main .col-md-6').addClass('col-md-4').removeClass('col-md-6');
+          $(this).removeClass('on');
+        }
+        else {
+          $('#main .col-md-4').addClass('col-md-6').removeClass('col-md-4');
+          $(this).addClass('on');
+        }
+      });
+    });
+    </script>
+  </body>
 </html>

@@ -1,3 +1,17 @@
+function submitFrom_data(ID) {
+  var newPost = document.getElementById("fb-post").value;
+  var minutes = document.getElementById("fb-minutes").value;
+  if (newPost != undefined) {
+    if (minutes != undefined && minutes >= 10 && minutes <= 259000) { //check minutes is valid and within range
+      createPromotable_Posts(ID, newPost, minutes);
+    } else {
+      post(newPost);
+    }
+  } else {
+    console.log("input is invalid");
+  }
+}
+
 function post(newPost) {
   FB.api(
       "/me/feed",
@@ -23,14 +37,13 @@ async function createPromotable_Posts(ID, newPost, time) {
     "/me/feed",
     "POST",
     { 
-      access_token : rpage_access_token,
+      access_token : page_access_token,
       message : newPost,
-      scheduled_publish_time : (Math.floor( new Date().getTime() / 1000 + 3000 + (3600 * 8))), //convertToUnixTime(time),
+      scheduled_publish_time : (Math.floor(await convertToUnixTime(time))), //convert minutes To Unix Time 
       published : false,
 
     }, 
     function (response) {
-      console.log(Math.floor( new Date().getTime() / 1000 + 3000 + (3600 * 8)));
       if (response && !response.error) {
         /* handle the result */
         console.log('created');
@@ -42,5 +55,5 @@ async function createPromotable_Posts(ID, newPost, time) {
 }
 
 function convertToUnixTime(time) { //input is xx mins
-  return new Date().getTime() / 1000 + 3000 + (3600 * 8);
+  return new Date().getTime() / 1000 + (time * 60);
 }
