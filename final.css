@@ -1,4 +1,4 @@
-#fb-profile, #fb-logout, #fb-feed {
+#fb-profile, #fb-logout, #fb-feed, #fb-getPromotable-Posts, #fb-getPageFeed, #fb-getFeed, #fb-newPost-box {
   display: none;
 }
 
@@ -14,11 +14,16 @@
     border-top-width: 1px;
 }
 
-.panel-body p {
+.panel-body p:first-child {
   padding-top: 10px;
 }
 
 .btn-primary {
   padding: 5px;
+}
+
+#fb-newPost-box {
+  width: 360px;
+  height: 295px;
 }
     

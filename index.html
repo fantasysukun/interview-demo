@@ -20,7 +20,7 @@
       <div class="col-md-12">
         <div class="navbar-header">
           
-          <a href="#" class="navbar-brand">Bootstrap</a>
+          <a href="#" class="navbar-brand">Kun's Interview Demo</a>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
           <i class="glyphicon glyphicon-search"></i>
           </button>
@@ -69,9 +69,9 @@
               onlogin="checkLoginState();">
              </fb:login-button></li>
              <li class="active"><a href="#" id="fb-logout" onclick="logout()">Logout</a></li>
-             <li class="active"><a href="#" onclick="getFeed()">GetFeed</a></li>
-             <li class="active"><a href="#" onclick="getPageFeed(1916406265068168)">GetPageFeed</a></li>
-             <li class="active"><a href="#" onclick="getPromotable_Posts(1916406265068168)">GetHidden_Posts</a></li>
+             <li class="active"><a href="#" id="fb-getFeed" onclick="getFeed()">GetFeed</a></li>
+             <li class="active"><a href="#" id="fb-getPageFeed" onclick="getPageFeed(1916406265068168)">GetPageFeed</a></li>
+             <li class="active"><a href="#" id="fb-getPromotable-Posts" onclick="getPromotable_Posts(1916406265068168)">GetHidden_Posts</a></li>
            </ul>
         </div>  
       </div>  
@@ -81,21 +81,22 @@
     <div class="container" id="main">
       <div class="row">
         <div class="col-sm-6 col-md-4">
-         
           <div class="container">
             <h3 id="fb-heading">Log in to view your profile</h3>
             <div id="fb-profile"></div>
           </div>
-          <div class="well"> 
-            <form id="fb-newPost" class="form-horizontal" role="form">
-              <h4>Make post</h4>
-              <div class="form-group" style="padding:14px;">
-                <textarea id="fb-post" class="form-control" placeholder="What's on your mind?"></textarea>
-                <input type="text" id="fb-minutes" size="20" name="minutes"><br>
-              </div>
-              
-              <button class="btn btn-success pull-right" type="button" onclick="submitFrom_data(1916406265068168)">Post</button><ul class="list-inline"><li><a href="#"><i class="glyphicon glyphicon-align-left"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-center"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-right"></i></a></li></ul>
-            </form>
+          <div class="container">
+            <div id="fb-newPost-box" class="well"> 
+              <form id="fb-newPost" class="form-horizontal" role="form">
+                <h4>Make post</h4>
+                <div class="form-group" style="padding:14px;">
+                  <textarea id="fb-post" class="form-control" placeholder="What's on your mind?"></textarea>
+                  <p>You can enter between 10 minutes and 6 months from the time of publish, or leave it empty to publish it right now. </p><input type="text" id="fb-minutes" size="10" name="minutes"> Minutes
+                </div>
+                
+                <button class="btn btn-success pull-right" type="button" onclick="submitFrom_data(1916406265068168)">Post</button>
+              </form>
+            </div>
           </div>
           <div class="container">  
             <div id="fb-feed"></div>

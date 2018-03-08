@@ -1,14 +1,19 @@
 function submitFrom_data(ID) {
   var newPost = document.getElementById("fb-post").value;
   var minutes = document.getElementById("fb-minutes").value;
-  if (newPost != undefined) {
-    if (minutes != undefined && minutes >= 10 && minutes <= 259000) { //check minutes is valid and within range
-      createPromotable_Posts(ID, newPost, minutes);
+  //console.log(minutes);
+  if (newPost != '') {
+    if (minutes != '') {
+      if (minutes >= 10 && minutes <= 259000) { //check minutes is valid and within range
+        createPromotable_Posts(ID, newPost, minutes);
+      } else {
+        window.alert("input time is invalid");
+      }
     } else {
       post(newPost);
     }
   } else {
-    console.log("input is invalid");
+    window.alert("400 That's an error");
   }
 }
 
@@ -23,9 +28,10 @@ function post(newPost) {
         if (response && !response.error) {
           /* handle the result */
           document.getElementById('fb-feed').innerHTML = response.id;
-          console.log('posted');
+          window.alert("posted");
         } else {
           console.log(response.error);
+          window.alert("400 That's an error");
         }
       }
   );
@@ -46,9 +52,10 @@ async function createPromotable_Posts(ID, newPost, time) {
     function (response) {
       if (response && !response.error) {
         /* handle the result */
-        console.log('created');
+        window.alert("posted");
       } else {
         console.log(response.error);
+        window.alert("400 That's an error");
       }
     }
   );

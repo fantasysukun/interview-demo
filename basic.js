@@ -32,12 +32,20 @@ function setElements(isLoggedIn) {
     document.getElementById('fb-logout').style.display = 'block';
     document.getElementById('fb-profile').style.display = 'block';
     document.getElementById('fb-feed').style.display = 'block';
+    document.getElementById('fb-getPromotable-Posts').style.display = 'block';
+    document.getElementById('fb-getFeed').style.display = 'block';
+    document.getElementById('fb-getPageFeed').style.display = 'block';
+    document.getElementById('fb-newPost-box').style.display = 'block';
   } else {
     document.getElementById('fb-btn').style.display = 'block';
     document.getElementById('fb-heading').style.display = 'block';
     document.getElementById('fb-logout').style.display = 'none';
     document.getElementById('fb-profile').style.display = 'none';
     document.getElementById('fb-feed').style.display = 'none';
+    document.getElementById('fb-getPromotable-Posts').style.display = 'none';
+    document.getElementById('fb-getFeed').style.display = 'none';
+    document.getElementById('fb-getPageFeed').style.display = 'none';
+    document.getElementById('fb-newPost-box').style.display = 'none';
   }
 }
 

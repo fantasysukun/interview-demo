@@ -4,6 +4,7 @@ function getProfile() {
       buildProfile(response);
     } else {
       console.log(response.error);
+      window.alert("400 That's an error");
     }
   });
 }
@@ -50,6 +51,7 @@ function getFeed() {
           buildFeed(response);
         } else {
           console.log(response.error);
+          window.alert("400 That's an error");
         }
       }
   );
@@ -90,6 +92,7 @@ function getAccessToken(ID) {
           resolve(response.access_token);
         } else {
           console.log(response.error);
+          window.alert("400 That's an error");
           resolve();
         }
       }
@@ -110,6 +113,7 @@ async function getPageFeed(ID) {
         buildPageFeed(page_access_token, response);
       } else {
         console.log(response.error);
+        window.alert("400 That's an error");
       }
     }
   );
@@ -155,6 +159,7 @@ function getPost_Impressions(page_access_token, page_id) {
           resolve(response.data[0].values[0].value);
         } else {
           console.log(response.error);
+          window.alert("400 That's an error");
           resolve();
         }
       }
@@ -175,9 +180,10 @@ async function getPromotable_Posts(ID) {
       if (response && !response.error) {
         /* handle the result */
         buildFeed(response);
-        console.log('got Promotable_Posts');
+        //console.log('got Promotable_Posts');
       } else {
         console.log(response.error);
+        window.alert("400 That's an error");
       }
     }
   );
@@ -190,6 +196,7 @@ function getLocalTime(time) {
       resolve(localTime.toLocaleString());
     } else {
       console.log('input time is invalid');
+      window.alert("400 That's an error");
       resolve();
     }
   }); 
