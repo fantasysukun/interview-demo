@@ -1,7 +1,7 @@
 function submitFrom_data(ID) {
   var newPost = document.getElementById("fb-post").value;
   var minutes = document.getElementById("fb-minutes").value;
-  //console.log(minutes);
+
   if (newPost != '') {
     if (minutes != '') {
       if (minutes >= 10 && minutes <= 259000) { //check minutes is valid and within range
@@ -12,6 +12,36 @@ function submitFrom_data(ID) {
     } else {
       post(newPost);
     }
+  } else {
+    window.alert("400 That's an error");
+  }
+}
+
+async function submitPageFrom_data(ID) {
+  var newPost = document.getElementById("fb-Pagepost").value;
+  //var minutes = document.getElementById("fb-minutes").value;
+  var page_access_token = await getAccessToken(ID); 
+
+  if (newPost != '') {
+    FB.api(
+      "/me/feed",
+      "POST",
+      {
+          "message": newPost,
+
+          access_token : page_access_token
+      },
+      function (response) {
+        if (response && !response.error) {
+          /* handle the result */
+          //document.getElementById('fb-feed').innerHTML = response.id;
+          window.alert("posted");
+        } else {
+          console.log(response.error);
+          window.alert("400 That's an error");
+        }
+      }
+    );
   } else {
     window.alert("400 That's an error");
   }
@@ -63,4 +93,13 @@ async function createPromotable_Posts(ID, newPost, time) {
 
 function convertToUnixTime(time) { //input is xx mins
   return new Date().getTime() / 1000 + (time * 60);
+}
+
+function hide_unpublished_button() {
+  var minutes = document.getElementById("fb-minutes").value;
+  if (minutes != 0) {
+    document.getElementById('fb-unpublished-button').style.display = 'none';
+  } else {
+    document.getElementById('fb-unpublished-button').style.display = 'block';
+  }
 }

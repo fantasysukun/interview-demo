@@ -43,7 +43,7 @@
       <div class="col-md-12">
         <div class="navbar-header">
           
-          <a href="index2.html" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Home <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
+          <a href="index.html" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Home <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
           <ul class="nav dropdown-menu">
             <li><a href="#"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
             <li><a href="#"><i class="glyphicon glyphicon-dashboard" style="color:#0000aa;"></i> Dashboard</a></li>
@@ -91,10 +91,24 @@
                 <h4>Make post</h4>
                 <div class="form-group" style="padding:14px;">
                   <textarea id="fb-post" class="form-control" placeholder="What's on your mind?"></textarea>
-                  <p>You can enter between 10 minutes and 6 months from the time of publish, or leave it empty to publish it right now. </p><input type="text" id="fb-minutes" size="10" name="minutes"> Minutes
+                  <p>You can enter between 10 minutes and 6 months from the time of publish, or leave it empty to publish it right now. </p>
+                  <input type="text" id="fb-minutes" size="10" name="minutes" onchange="hide_unpublished_button()"> Minutes
+                </div>
+                <button id="fb-unpublished-button" class="btn btn-success pull-right" type="button" onclick="submitPageFrom_data(1916406265068168)">unpublished post</button>
+                <button class="btn btn-success pull-right" type="button" onclick="submitFrom_data(1916406265068168)">Post</button>
+              </form>
+            </div>
+          </div>
+          <div class="container">
+            <div id="fb-newPagePost-box" class="well"> 
+              <form id="fb-newPagePost" class="form-horizontal" role="form">
+                <h4>Make post</h4>
+                <div class="form-group" style="padding:14px;">
+                  <textarea id="fb-Pagepost" class="form-control" placeholder="What's on your mind?"></textarea>
+                  <!-- <p>You can enter between 10 minutes and 6 months from the time of publish, or leave it empty to publish it right now. </p><input type="text" id="fb-minutes" size="10" name="minutes"> Minutes -->
                 </div>
                 
-                <button class="btn btn-success pull-right" type="button" onclick="submitFrom_data(1916406265068168)">Post</button>
+                <button class="btn btn-success pull-right" type="button" onclick="submitPageFrom_data(1916406265068168)">Post</button>
               </form>
             </div>
           </div>

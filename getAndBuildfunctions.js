@@ -21,15 +21,15 @@ function buildProfile(user) {
               <div class="well well-sm">
                 <div class="media">
                   <a class="thumbnail pull-left" href="#">
-                      <img class="media-object" src="assets/img/a13ac7aed64918b6354f48da59490e3a.jpg">
+                    <img class="media-object" src="assets/img/a13ac7aed64918b6354f48da59490e3a.jpg">
                   </a>
                   <div class="media-body">
-                      <h4 class="media-heading">${user.name}</h4>
+                    <h4 class="media-heading">${user.name}</h4>
                   <p><span class="label label-info">10 photos</span> <span class="label label-primary">89 followers</span></p>
-                      <p>
-                          <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>
-                          <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-heart"></span> Favorite</a>
-                      </p>
+                    <p>
+                      <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>
+                      <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-heart"></span> Favorite</a>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -180,7 +180,6 @@ async function getPromotable_Posts(ID) {
       if (response && !response.error) {
         /* handle the result */
         buildFeed(response);
-        //console.log('got Promotable_Posts');
       } else {
         console.log(response.error);
         window.alert("400 That's an error");
